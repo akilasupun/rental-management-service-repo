@@ -23,7 +23,7 @@ public class RentalController {
 	@Autowired
 	RentalService service;
 	@Autowired
-	CarManagementServiceProxy proxy;
+	CarManagementServiceProxy carServiceProxy;
 
 	@PostMapping(path = "/newRent")
 	public Rent addNewRent(@RequestBody Rent newRent) {
@@ -49,8 +49,13 @@ public class RentalController {
 
 	@GetMapping(path = "/getCarFeign/{Id}")
 	public ResponseEntity<CarProxy> getCarDetails(@PathVariable Long Id) {
-		CarProxy carProxy = proxy.getCarDetails(Id);
+		CarProxy carProxy = carServiceProxy.getCarDetails(Id);
 
 		return ResponseEntity.status(HttpStatus.OK).body(carProxy);
+	}
+
+	@GetMapping(path = "/getCarServicePort")
+	public int getCarInstancePort() {
+		return carServiceProxy.getRunningPort();
 	}
 }
