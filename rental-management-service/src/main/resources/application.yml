@@ -11,8 +11,14 @@ spring:
       ddl-auto: update
     show-sql: true
 server:  port: 8200
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
 car-management-service:
   ribbon:
     eureka:
       enabled: false
-    listOfServers: localhost:8100, localhost:8101, localhost:8102
+    listOfServers: localhost:8100, localhost:8101
+    #listOfServers: localhost:8100, localhost:8101, localhost:8102
+    ServerListRefreshInterval: 15000

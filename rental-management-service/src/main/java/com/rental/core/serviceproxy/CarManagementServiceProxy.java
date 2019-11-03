@@ -13,4 +13,7 @@ import com.rental.core.model.CarProxy;
 public interface CarManagementServiceProxy {
 	@GetMapping(path = "/car-service/getCarInfo/{Id}")
 	public CarProxy getCarDetails(@PathVariable("Id") Long Id);
+
+	@GetMapping(path = "/car-service/getPort")
+	public int getRunningPort();
 }
